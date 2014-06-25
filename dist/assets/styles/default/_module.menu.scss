@@ -1,0 +1,25 @@
+.rdsa-menu {
+  text-align: right;
+
+  >div:nth-child(1) {
+    font-weight: bold;
+    padding-bottom: 5px;
+    font-size: 120%;
+  }
+
+  .nav a {
+    padding: 0em 0.2em;
+    color: #000000;
+        
+    span:last-child {
+      display: none;
+    }
+  }
+  
+  // TODO: "Search agreements" menu-item is hidden temporarily, show it when implemented
+  >ul >li:nth-child(3) {
+    display: none;
+  } 
+}
+
+

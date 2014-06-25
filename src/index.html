@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="iguana.next" xmlns="http://www.w3.org/1999/html">
+<head>
+<meta charset="UTF-8">
+<!--
+    Build revision: <%= buildInfo.revision %>
+    Build time: <%= buildInfo.time %>
+    Build version: <%= version %>
+
+    Environment: <%= buildInfo.env %>
+    OrgId: <%= buildInfo.orgid %>
+-->
+
+<title>Iguana.Next</title>
+
+<!-- Make sure IE is not using compatibility view -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, max-age=0, must-revalidate"/>
+<meta http-equiv="Expires" content="0"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+
+<link type="image/x-icon" rel="icon" href="assets/images/favicon.ico" />
+
+<!-- Compiled, processed by grunt in "index" task -->
+<% styles.forEach( function ( file ) { %>
+<link rel="stylesheet" type="text/css" href="<%= file %>" />
+<% }); %>
+
+<% scripts.forEach( function ( file ) { %>
+<script type="text/javascript" src="<%= file %>"></script>
+<% }); %>
+
+</head>
+<body>
+
+    <div class="header">
+         <menu></menu>
+    </div>
+
+    <div class="app" ui-view="application">
+        <div class="app-busy"></div>
+    </div>
+</body>
+</html>

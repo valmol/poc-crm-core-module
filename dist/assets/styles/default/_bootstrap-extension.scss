@@ -1,0 +1,441 @@
+/**
+ *  Override Bootstrap's stuff that we cannot override via variables
+ */
+ 
+ 
+// 
+// Fix body/html width
+//
+html, body {
+  height: 100%;
+  // A bit below 480px because browser elements may
+  // take some additional space
+  min-width: 450px;
+}
+
+
+//
+// Re-style the Bootstrap's tables
+//
+.table {
+  .btn {
+    border: 0;
+    margin-top: 0;
+  }
+  tbody + tbody {
+    border-top-width: 0;
+  }
+  thead > tr > th,
+  tbody > tr > th,
+  tfoot > tr > th { 
+  	border-top-width: 0;
+	color: $cob-heading-color;
+	background-color: $cob-heading-bg;
+	font-weight: 400;
+  }
+  thead > tr > td,
+  tbody > tr > td,
+  tfoot > tr > td {
+  	border-top-width: 0;
+  	border-bottom: 1px solid $table-border-color;
+  }
+  tbody {
+    > tr.row-menu {
+      display: none;
+      text-align: center;
+      
+      > td > ul {
+        padding: 0;
+      
+        > li {
+          display: inline;
+          margin: 0 $table-cell-padding;
+        }
+      }      
+    }
+    
+    &.expanded {
+      background-color: $table-bg-hover;
+      > tr:first-child > td {
+        border-bottom: 0;
+      }
+      > tr.row-menu {
+        display: table-row;
+      }
+    }    
+  }
+}
+
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    text-transform: uppercase;
+}
+.modal {
+  h1, h2, h3, h4, h5, h6,
+    .h1, .h2, .h3, .h4, .h5, .h6 {
+    text-transform: inherit;
+  }
+}
+
+// Get rid of shadows on unfocused form-control
+.form-control {
+	@include box-shadow(none);
+}
+
+
+
+/**
+ *  Define own additions to Bootstrap
+ */
+
+// Arrow for right dropdown menu
+// Should be coordinated with width & height of the triggering element
+// .arrow is outer, .arrow:after is inner
+$dropdown-arrow-width:                 floor($input-height-base / 4)  !default;
+$dropdown-arrow-outer-width:           ($dropdown-arrow-width + 1)  !default;
+$dropdown-arrow-color:                 $dropdown-bg  !default;
+$dropdown-arrow-outer-color:           $dropdown-border  !default;
+$dropdown-arrow-outer-fallback-color:  $dropdown-fallback-border  !default;
+
+.dropdown-menu .arrow {
+  &,
+  &:after {
+    display: block;
+    position: absolute;
+    height: 0;
+    width: 0;
+    border-style: solid;
+    border-color: transparent;  
+  }
+}
+.dropdown-menu.pull-right .arrow {
+  border-left-color: $dropdown-arrow-outer-fallback-color; // IE8 fallback
+  border-left-color: $dropdown-arrow-outer-color;
+  border-right-width: 0;
+  margin-top: -$dropdown-arrow-outer-width;
+  right: -$dropdown-arrow-outer-width;
+  top: 2 * $dropdown-arrow-width;
+}
+.dropdown-menu .arrow {
+  border-width: $dropdown-arrow-outer-width;
+}
+.dropdown-menu.pull-right .arrow:after {
+  border-left-color: $dropdown-arrow-color;
+  border-right-width: 0;
+  bottom: -$dropdown-arrow-width;
+  content: " ";
+  right: 1px;
+}
+.dropdown-menu .arrow:after {
+  border-width: $dropdown-arrow-width;
+  content: "";
+}
+
+
+// New button types
+.btn-ok {
+  @include button-variant($btn-default-bg, $btn-default-color, $btn-default-border);
+}
+
+.btn-cancel {
+  @include button-variant($btn-default-color, $btn-default-bg, $btn-default-border);
+}
+
+.btn-with-svg {
+  padding: floor($padding-base-vertical*2/3) floor($padding-base-horizontal*2/3); // reduce padding if button has icon
+}
+
+
+// Drop browser-defined decorations from checkboxes and radio-buttons
+.radio input[type="radio"], .checkbox input[type="checkbox"] {
+  background-image: none;
+  border: 1px solid $btn-default-border;
+}
+
+
+// Styles to format SVG images properly
+@mixin svg-variant($line-height, $input-height) {
+  line-height: $line-height;
+  height: $input-height;
+  width: $input-height;
+  padding: 0em;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.svg-default {
+  @include svg-variant($line-height-base, $input-height-base);
+}
+
+$svg-small-multiplier: 0.8 !default;
+.svg-small {
+  @include svg-variant($line-height-base, floor($svg-small-multiplier*$input-height-base));
+}
+
+
+// Styled checkbox'es and radio's (assuming a pair <input/><label/>).
+// Works thanks to label's "for" attribute.
+// Actual location of the checkbox mark is defined
+// by the embedded span.checkbox/span.radio,
+// but it needs to be inside label's space in order clicking on it to work.
+.checkbox, .radio {
+  vertical-align: center;
+}
+ 
+.checkbox input[type=checkbox], .radio input[type=radio] {
+  // Cannot display=none or visibility=hidden
+  // as then element cannot receive focus,
+  // so make it fully transparent and taking no place.
+  opacity: 0 !important;
+  width: $checkbox-size;
+  height: $checkbox-size;
+  margin-right: -$checkbox-size !important;
+}
+
+.checkbox .mark, .radio .mark {
+  margin: 0;
+  padding: 0;
+  left: 0;
+  display: inline-block;
+  border: solid 1px $input-border;
+  background: none;
+  // mark need to place itself
+  // under label's padding-left,
+  // in order for clicking on mark to work
+  width: $checkbox-size;
+  height: $checkbox-size;
+  margin-right: -$checkbox-size;
+}
+
+.checkbox .mark {
+  border-radius: 0px;
+}
+
+.radio .mark {
+  border-radius: floor($checkbox-size/2);
+}
+
+.checkbox label, .radio label {
+  padding-left: ($checkbox-size + $padding-xs-horizontal);
+  background: none; 
+}
+
+.checkbox input[type=checkbox]:checked + .mark {
+  background: url('../images/iconmonstr-check-mark-icon.svg') no-repeat center center;
+}
+
+.radio input[type=radio]:checked + .mark {
+  background: url('../images/iconmonstr-check-mark-icon.svg') no-repeat center center;
+}
+
+.checkbox input[type=checkbox]:disabled + .mark, .radio input[type=radio]:disabled + .mark {
+  background-color: $input-bg-disabled; 
+}
+
+.checkbox input[type=checkbox]:focus + .mark, .radio input[type=radio]:focus + .mark {
+  $color: $input-border-focus;
+  $color-rgba: rgba(red($color), green($color), blue($color), .6);
+  border-color: $color;
+  @include box-shadow(inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px $color-rgba); 
+}
+
+.checkbox input.ng-invalid + .mark {
+  background-color: $cob-input-invalid-bg;
+  color: $cob-input-invalid-color;
+  border: 1px solid $cob-input-invalid-color;
+}
+.checkbox input.ng-invalid.ng-pristine + .mark {
+  background-color: transparent; 
+  color: $input-color;
+  border: 1px solid $input-border;
+}
+form.submitted .checkbox input.ng-invalid.ng-pristine + .mark {
+  background-color: $cob-input-invalid-bg; 
+  color: $cob-input-invalid-color;
+  border: 1px solid $cob-input-invalid-color;
+}
+
+
+// Not valid form inputs (and alert error messages).
+// Highlight invalid fields, except if they are pristine&invalid,
+// but no exception if user tried to submit the form.  
+// Disabled fields should look disabled at all times.
+.form-control.ng-invalid {
+  & {
+    background-color: $cob-input-invalid-bg;
+    color: $cob-input-invalid-color;
+    border: 1px solid $cob-input-invalid-color;
+  }
+  &.ng-pristine {
+    background-color: $cob-normal-bg;
+    color: $input-color;
+    border: 1px solid $input-border;
+    form.submitted & {
+      background-color: $cob-input-invalid-bg;
+      color: $cob-input-invalid-color;
+      border: 1px solid $cob-input-invalid-color;
+    }
+  }
+  &[disabled], form.submitted &[disabled] {
+    background-color: $input-bg-disabled;
+  }
+}
+// Show only first alert message (error)
+// Also style it.
+div.alert {
+  border: 0px;
+  color: $cob-input-invalid-color;
+  background: transparent;
+  margin: 0;  
+  
+  span {
+    display: none;
+  }
+  span:first-child
+  {
+    display: inline;
+  }
+}
+// Hide the div with error style if there are no errors
+div.alert:empty {
+  display: none;
+}
+
+.message-under-field {
+  font-size: smaller;
+  padding-top: 0em;
+  padding-bottom: 1em;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+//
+// Fixing hidden button
+//
+.input-group .input-group-btn {
+  z-index: 3;
+}
+
+
+//
+// Style for COB module box
+//
+.cob-module {
+  @extend .well;
+  border-color: $cob-border-color;
+  padding: 2em 2em 5em 2em;
+}
+
+
+//
+// Style for form field
+//
+.cob-field {
+  display: block;
+  width: 100%;
+  height: $input-height-base;
+  padding: $padding-base-vertical $padding-base-horizontal;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $input-color;
+  vertical-align: middle;
+  background-image: none;
+  background-color: $input-bg-disabled;
+}
+.cob-field.cob-textarea {
+  height: auto;
+}
+
+
+// Animation when a module is busy
+// (for css3 animation is not supported by ie9
+// and also takes more cpu than animated gif)
+.busy {
+  position: relative;
+}
+.busy:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  content: " ";
+  background: rgba(0,0,0,0.13) url('../images/spinner.gif') no-repeat center;
+  opacity: 0.7;
+  filter: alpha(opacity=70); /* for IE */
+  z-index: 1000;
+}
+
+.app-busy {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0,0.13) url('../images/spinner.gif') no-repeat center;
+  opacity: 0.7;
+  filter: alpha(opacity=70); /* for IE */
+  z-index: 1001;
+}
+
+
+//
+// Tune Bootstrap's pagination
+//
+.pagination {
+  //line-height: ;
+
+  > li {
+    text-align: center;
+    font-size: smaller;
+  
+    > a,
+    > span {
+      $local-padding: $padding-base-vertical - 2px;
+      color: $cob-heading-color;
+      border-width: 0;
+      border-radius: $cob-radius-small;
+      padding: $local-padding 1px;
+      font-size: smaller;
+      // -4px for double "font-size: smaller"
+      min-width: $line-height-computed - 4px + 2*$local-padding;
+      margin: 1.5px;
+      margin-left: 1.5px;
+      cursor:pointer;
+    }
+    
+    &:first-child, &:last-child {
+      > a,
+      > span {
+        // Have to split border below to completely override it 
+        border-top-right-radius: $cob-radius-small;
+        border-top-left-radius: $cob-radius-small;
+        border-bottom-right-radius: $cob-radius-small;
+        border-bottom-left-radius: $cob-radius-small;
+      }
+    }
+    
+    &.disabled {
+      > a,
+      > span {
+        visibility: hidden;
+      }
+    }
+    
+  }
+  
+}
+
+
+//
+// Advanced mixin for styling placeholders,
+// has to siffix this with "advanced" as Bootstrap
+// already has a "placeholder" mixin.
+//
+@mixin placeholder-advanced {
+  &::-webkit-input-placeholder {@content}
+  &:-moz-placeholder           {@content}
+  &::-moz-placeholder          {@content}
+  &:-ms-input-placeholder      {@content}  
+}

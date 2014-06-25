@@ -1,0 +1,36 @@
+/**
+ * Application-wide variables
+ * (note that Bootstrap variables go in own file).
+ */
+
+// Main Application Colors, keep it short
+$cob-text-color:                 #606366 !default;
+$cob-stressed-text-color:        #010101 !default;
+$cob-heading-color:              #ffffff !default;
+$cob-dropdown-disabled-color:    #7e7f81 !default;
+$cob-border-color:               #f2f2f2 !default;
+$cob-input-invalid-color:        #dd4f3b !default;
+
+$cob-normal-bg:                  #ffffff !default;
+$cob-heading-bg:                 #1fbba6 !default;
+$cob-dropdown-bg:                #606467 !default;
+$cob-dropdown-hover-bg:          #7ad6cb !default;
+$cob-input-invalid-bg:           #ffffff !default;
+
+$cob-radius-small:               3px !default;
+
+
+
+/**
+ * Webfonts
+ */
+// Font path for Glyphicons/Glyphicons-Halflings
+$icon-font-path:  '../fonts/' !default;
+// Font path for Font-Awesome
+$FontAwesomePath: '../fonts' !default; 
+
+
+/**
+ * Size of styled checkboxes and radios
+ */
+$checkbox-size:          28px !default;

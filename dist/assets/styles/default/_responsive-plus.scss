@@ -1,0 +1,42 @@
+/**
+ * The so-called "Responsive+" (Responsive-Plus).
+ */
+
+// Use this "Responsive+" mixin with: "xs", "sm", "md" and "lg"
+// to fit the respective Bootstrap's ranges:
+//  <= $screen-xs-max
+//  <= $screen-sm-max
+//  <= $screen-md-max
+//  >= $screen-lg-min
+@mixin cob-responsive($size) {
+  @if $size == lg {
+    .cob-module[min-width~="#{$screen-lg}"] & { @content; }
+  }
+  @else if $size == md {
+    .cob-module[max-width~="#{$screen-md}"] & { @content; }
+  }
+  @else if $size == sm {
+    .cob-module[max-width~="#{$screen-sm}"] & { @content; }
+  }
+  @else if $size == xs {
+    .cob-module[max-width~="#{$screen-xs}"] & { @content; }
+  }
+}
+
+.hidden-when-md {
+  @include cob-responsive(md) {
+    display: none;
+  }
+}
+
+.hidden-when-sm {
+  @include cob-responsive(sm) {
+    display: none;
+  }
+}
+
+.hidden-when-xs {
+  @include cob-responsive(xs) {
+    display: none;
+  }
+}

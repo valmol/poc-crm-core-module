@@ -1,0 +1,27 @@
+{
+  "name": "iguana.next.core",
+  "version": "1.0.0",
+  "dependencies": {
+    "angular": "~1.2.16",
+    "angular-i18n": "~1.2.16",
+    "angular-animate": "~1.2.16",
+    "angular-bootstrap": "~0.10.0",
+    "angular-resource": "~1.2.16",
+    "angular-translate": "~2.1.0",
+    "angular-translate-loader-static-files": "~2.1.0",
+    "angular-ui-router": "~0.2.10",
+    "angular-ui-utils": "~0.1.1",
+    "bootstrap-sass-official": "~3.1.1",
+    "bootstrap3-datepicker": "~1.2.1",
+    "font-awesome": "~4.0.3",
+    "elementQuery": "latest",
+    "jquery": "<2",
+    "respond": "~1.4.2",
+    "PhoneNumber.js": "https://github.com/rinnnn/PhoneNumber.js.git",
+    "FileSaver": "latest"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.2.16",
+    "angular-placeholders": "latest"
+  }
+}

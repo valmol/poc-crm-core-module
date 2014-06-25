@@ -1,0 +1,43 @@
+//
+// Sticky footer
+//
+
+$footer-height:     52px !default;
+
+.app {
+  height: 100%;
+}
+
+.app-body {
+  min-height: 100%;
+  padding-bottom: 20px + $footer-height;
+  margin-bottom: -$footer-height;
+}
+
+.footer {
+  height: $footer-height;
+  text-align: right;
+  padding: 0;
+}
+
+.footer > .container > div {
+  height: $footer-height;
+  text-align: center;
+  white-space: nowrap;
+  
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em; // fix for the space
+  }
+  
+  & > .footer-text {
+    white-space: normal;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0;
+    margin: 0;
+  }
+}

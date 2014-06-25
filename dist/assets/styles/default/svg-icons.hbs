@@ -1,0 +1,8 @@
+{{! This template is used to autogenerate CSS styles for SVG images }}
+
+{{#each customselectors}}{{this}},{{/each}}
+{{prefix}}{{name}} {
+  background-image: url('../images/ie8/{{datauri}}');
+  background-image: url('../images/{{name}}.svg'), none;
+  background-repeat: no-repeat;
+}

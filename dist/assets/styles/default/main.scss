@@ -1,0 +1,35 @@
+/**
+ * This is the main bank-independent application stylesheet.
+ * It should include or import all stylesheets
+ * used throughout the application as this is the only stylesheet in
+ * the Grunt configuration that is automatically processed.
+ */
+@charset "UTF-8";
+
+// Compass imports
+@import "compass/css3";
+
+// Main app's variables file.
+// Have include it prior to bootstrap-sass itself when using sass.
+@import "variables";
+@import "bootstrap-variables";
+
+// Include styles of the frameworks we use (from vendor dir).
+// TODO: Only the ones used in the project should be imported
+// as the rest are just wasting space.
+@import "bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/bootstrap.scss";
+@import "font-awesome/scss/font-awesome";
+
+// Define extensions to Bootstrap, doing it after bootstrap
+// so that they can override it. 
+@import "bootstrap-extension";
+@import "responsive-plus";
+@import "date-picker";
+
+// Application-wide styles.
+@import "application-wide";
+
+// Modules
+@import "modules";
+
+

@@ -1,0 +1,19 @@
+<div class="app-body">
+  <div ui-view="header"></div>
+  
+  <div class="container">
+      <div ui-view="caption"></div>
+      <div class="rdsa-body">
+          <div class="rdsa-menu-box">
+              <div ui-view="side"></div>
+          </div>
+          <div class="rdsa-main">
+              <div ui-view="main">
+                  <div class="app-busy"></div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div ui-view="footer"></div>

@@ -1,0 +1,124 @@
+@mixin a-styled($text-color: #000000) {
+  text-decoration: none;
+  color: $text-color;
+  &:hover { color: $text-color; }
+  &:visited { color: $text-color; }
+}
+
+@mixin logout-group-like {
+  @include button-variant(#ffffff, #777777, #444444);
+  @include background-image(linear-gradient(top, #777777 0%, #444444 100%));
+}
+
+
+
+.header-wrapper {
+  @include gradient-vertical(#ECECEC, #FFFFFF, 0%, 17%); 
+  border-bottom: 1px solid #d4d4d4;
+  padding-top: 1.5em;
+  
+  > .header {
+    text-align: center;
+    max-width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    > .container:last-child {
+      white-space: nowrap;
+    }
+
+    .main-logo {
+      display:inline-block;
+      float: left;
+
+      // Main logo, has to be customized in all cases!
+      .img-logo {
+        display: inline-block;
+        background-image: url('../images/logo.png');
+        background-size: 100%;
+        background-repeat: no-repeat;
+        height:24px;
+        width: 49px;
+      }
+    }
+
+    .office-info {
+      float: left;
+      margin-left: 10px;
+      border-left: solid 1px $headings-color;
+      padding-left: 10px;
+    }
+
+    > .container:first-child {
+      text-align: right;
+      
+      a, a:visited {
+        color: $headings-color;
+      }
+    }
+        
+    .logout {
+      display:inline-block;
+      text-align: right;
+      
+      .user-info, .logout-link, .language {
+        display: inline-block;
+      }
+      
+      .logout-link > a {
+        cursor: pointer;
+      } 
+    }
+  } 
+}
+
+
+
+.toolbar {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: left;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  .toolbar-item {
+    display: inline-block;
+    padding-right: 1em;
+    
+    span:last-child {
+    	display: block;
+    	font-weight: normal;
+    }
+    
+    a {
+      display: inline-block;
+      @include a-styled($cob-stressed-text-color);
+    }
+  }
+
+  .home-item {
+    padding: initial;
+    margin-left: initial;
+  }
+
+  .menu-item {
+    float: none;
+    display: inline-block;
+  }
+
+}
+
+.toolbar-item-icon {
+  height:2em;
+}
+
+.menu-container {
+  white-space: nowrap;
+}
+
+.menu-group {
+  display:inline-block;
+  vertical-align: top;
+  padding-left: 0px;
+}
